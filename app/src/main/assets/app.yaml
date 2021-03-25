@@ -1,0 +1,6 @@
+name: "Amphion B I G"
+author: "cadmean"
+companyDomain: "cadmean.ru"
+frontend: "android"
+debug: true
+mainScene: "second"

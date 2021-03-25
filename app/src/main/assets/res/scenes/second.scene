@@ -1,0 +1,110 @@
+children:
+- children: []
+  id: 1
+  name: main text
+  transform:
+    pivot:
+      x: 0
+      "y": 0
+      z: 0
+    position:
+      x: 10
+      "y": 40
+      z: 0
+    rotation:
+      x: 0
+      "y": 0
+      z: 0
+    size:
+      x: 500
+      "y": 30
+      z: 0
+  components:
+    - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+      state:
+        textColor: "#2c68a8"
+        font: ""
+        fontSize: 20
+        fontWeight: 0
+        text: "bruh"
+    - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary
+      state: {}
+- children: []
+  id: 2
+  name: triangle
+  transform:
+    pivot:
+      x: 0
+      "y": 0
+      z: 0
+    position:
+      x: 50
+      "y": 50
+      z: 0
+    rotation:
+      x: 0
+      "y": 0
+      z: 0
+    size:
+      x: 169
+      "y": 169
+      z: 0
+  components:
+    - name: github.com/cadmean-ru/amphion/engine/builtin.ShapeView
+      state:
+        fillColor: "#2c68a8"
+        strokeColor: "#0000"
+        strokeWeight: 0
+        cornerRadius: 0
+        pType: 5
+    - name: github.com/cadmean-ru/amphion/frontend/ios/bind.IosTestController
+      state: {}
+    - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary
+      state: {}
+    - name: github.com/cadmean-ru/amphion/engine/builtin.MouseMover
+      state: {}
+- children: []
+  id: 3
+  name: imaage
+  transform:
+    pivot:
+      x: 0
+      "y": 0
+      z: 0
+    position:
+      x: 0
+      "y": 500
+      z: 2
+    rotation:
+      x: 0
+      "y": 0
+      z: 0
+    size:
+      x: -2147483648
+      "y": -2147483648
+      z: 0
+  components:
+    - name: github.com/cadmean-ru/amphion/engine/builtin.ImageView
+      state:
+        resId: 2
+        imageUrl: ""
+components: []
+id: 0
+name: Second scene
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 0
+    "y": 0
+    z: 0
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 1
+    "y": 1
+    z: 1

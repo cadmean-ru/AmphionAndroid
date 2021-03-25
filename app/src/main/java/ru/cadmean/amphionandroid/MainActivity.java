@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(new MyGLView(this));
 
-        Bind.amphionInitAndroid(new AndroidFrontend(), new AndroidResourceManager(), new AndroidRendererDelegate());
+        Bind.amphionInitAndroid(new AndroidFrontend(this), new AndroidResourceManager(this), new AndroidRendererDelegate());
     }
 
     
