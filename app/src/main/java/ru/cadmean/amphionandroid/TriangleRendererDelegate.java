@@ -1,6 +1,7 @@
 package ru.cadmean.amphionandroid;
 
 import android.opengl.GLES20;
+import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -29,6 +30,8 @@ public class TriangleRendererDelegate implements PrimitiveRendererDelegate {
 
     private FloatBuffer triangleBuffer;
 
+    private static final String TAG = "TriangleRenderer";
+
     @Override
     public void onRemovePrimitive(PrimitiveRenderingContext primitiveRenderingContext) {
 
@@ -36,6 +39,8 @@ public class TriangleRendererDelegate implements PrimitiveRendererDelegate {
 
     @Override
     public void onRender(PrimitiveRenderingContext primitiveRenderingContext) {
+        Log.d(TAG, "triangle render");
+
         ByteBuffer tempTriangleBuffer = ByteBuffer.allocateDirect(vertices.length * 4);
 
         tempTriangleBuffer.order(ByteOrder.nativeOrder());
@@ -47,6 +52,7 @@ public class TriangleRendererDelegate implements PrimitiveRendererDelegate {
         triangleBuffer.position(0);
 
         GLES20.glUseProgram(programId);
+
         int posId = GLES20.glGetAttribLocation(programId, "pos");
 
         GLES20.glVertexAttribPointer(posId, 3, GLES20.GL_FLOAT, false, 12, triangleBuffer);
@@ -63,6 +69,9 @@ public class TriangleRendererDelegate implements PrimitiveRendererDelegate {
 
     @Override
     public void onStart() {
+        Log.d(TAG, "triangle start");
+        Log.d(TAG, Thread.currentThread().getName());
+
         GLES20.glClearColor(0,0.6f,0.9f,1);
 
         int vertexId = GLES20.glCreateShader(GLES20.GL_VERTEX_SHADER);
