@@ -52,7 +52,7 @@ children:
   components:
     - name: github.com/cadmean-ru/amphion/engine/builtin.ShapeView
       state:
-        fillColor: "#2c68a8"
+        fillColor: "#ff0000"
         strokeColor: "#0000"
         strokeWeight: 0
         cornerRadius: 0

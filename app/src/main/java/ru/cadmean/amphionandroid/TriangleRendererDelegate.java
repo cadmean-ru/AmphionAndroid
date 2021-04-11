@@ -7,27 +7,21 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import ru.cadmean.amphion.android.cli.GeometryPrimitiveData;
-import ru.cadmean.amphion.android.cli.PrimitiveRendererDelegate;
-import ru.cadmean.amphion.android.cli.PrimitiveRenderingContext;
-import ru.cadmean.amphion.android.cli.Vector3;
+import ru.cadmean.amphion.android.cli.*;
 
 public class TriangleRendererDelegate implements PrimitiveRendererDelegate {
-
-    private final String vertexSource = "attribute vec3 pos;\n" +
-            "\n" +
-            "void main(){\n" +
-            "    gl_Position = vec4(pos, 1);\n" +
-            "}";
-    private final String fragmentSource = "void main(){\n" +
-            "    gl_FragColor = vec4(0.6, 0.9, 0, 1);\n" +
-            "}";
+    
+    private ShaderLoader shaderLoader;
 
     private int programId;
 
     private FloatBuffer triangleBuffer;
 
     private static final String TAG = "TriangleRenderer";
+
+    public TriangleRendererDelegate(ShaderLoader shaderLoader) {
+        this.shaderLoader = shaderLoader;
+    }
 
     @Override
     public void onRemovePrimitive(PrimitiveRenderingContext primitiveRenderingContext) {
@@ -43,10 +37,13 @@ public class TriangleRendererDelegate implements PrimitiveRendererDelegate {
         Vector3 tlp = gp.getTlPositionN();
         Vector3 brp = gp.getBrPositionN();
 
+        Vector4 color = gp.getFillColorN();
+
         float[] vertices = {
-                tlp.getX(), tlp.getY(), tlp.getZ(),
-                brp.getX(), brp.getY(), brp.getZ(),
-                tlp.getX(), brp.getY(), brp.getZ()};
+                tlp.getX(), tlp.getY(), tlp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
+                brp.getX(), brp.getY(), brp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
+                tlp.getX(), brp.getY(), brp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
+        };
 
         ByteBuffer tempTriangleBuffer = ByteBuffer.allocateDirect(vertices.length * 4);
 
@@ -61,12 +58,17 @@ public class TriangleRendererDelegate implements PrimitiveRendererDelegate {
         GLES20.glUseProgram(programId);
 
         int posId = GLES20.glGetAttribLocation(programId, "pos");
+        int colId = GLES20.glGetAttribLocation(programId, "col");
 
-        GLES20.glVertexAttribPointer(posId, 3, GLES20.GL_FLOAT, false, 12, triangleBuffer);
+        int stride = 28;
+
+        GLES20.glVertexAttribPointer(posId, 3, GLES20.GL_FLOAT, false, stride, triangleBuffer);
+        GLES20.glVertexAttribPointer(colId, 4, GLES20.GL_FLOAT, false, stride, triangleBuffer);
 
         GLES20.glEnableVertexAttribArray(posId);
+        GLES20.glEnableVertexAttribArray(colId);
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 3);
-        GLES20.glDisableVertexAttribArray(posId);
+//        GLES20.glDisableVertexAttribArray(posId);
     }
 
     @Override
@@ -79,23 +81,10 @@ public class TriangleRendererDelegate implements PrimitiveRendererDelegate {
         Log.d(TAG, "triangle start");
         Log.d(TAG, Thread.currentThread().getName());
 
-        GLES20.glClearColor(0,0.6f,0.9f,1);
+        int vertexId = shaderLoader.loadAndCompile(R.raw.triangle_vertex, GLES20.GL_VERTEX_SHADER);
+        int fragmentId = shaderLoader.loadAndCompile(R.raw.triangle_fragment, GLES20.GL_FRAGMENT_SHADER);
 
-        int vertexId = GLES20.glCreateShader(GLES20.GL_VERTEX_SHADER);
-        int fragmentId = GLES20.glCreateShader(GLES20.GL_FRAGMENT_SHADER);
-
-        GLES20.glShaderSource(vertexId, vertexSource);
-        GLES20.glShaderSource(fragmentId, fragmentSource);
-
-        GLES20.glCompileShader(vertexId);
-        GLES20.glCompileShader(fragmentId);
-
-        programId = GLES20.glCreateProgram();
-
-        GLES20.glAttachShader(programId, vertexId);
-        GLES20.glAttachShader(programId, fragmentId);
-
-        GLES20.glLinkProgram(programId);
+        programId = shaderLoader.createAndLinkProgram(vertexId, fragmentId);
     }
 
     @Override

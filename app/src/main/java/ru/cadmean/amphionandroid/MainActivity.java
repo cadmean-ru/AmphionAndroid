@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         DroidCli.amphionInitAndroid(
                 new AndroidFrontend(this, myGLView),
                 new AndroidResourceManager(this),
-                new AndroidRendererDelegate(myGLView));
+                new AndroidRendererDelegate(this, myGLView));
 
         setContentView(myGLView);
     }
