@@ -66,7 +66,7 @@ public class AndroidFrontend implements FrontendDelegate {
     @Override
     public Context getContext() {
         Context context = new Context();
-        context.setScreenSize(new Vector3(100,100,100));
+        context.setScreenSize(MyRenderer.getSurfaceSize());
 
         return context;
     }

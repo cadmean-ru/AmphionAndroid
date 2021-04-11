@@ -7,8 +7,10 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
+import ru.cadmean.amphion.android.cli.GeometryPrimitiveData;
 import ru.cadmean.amphion.android.cli.PrimitiveRendererDelegate;
 import ru.cadmean.amphion.android.cli.PrimitiveRenderingContext;
+import ru.cadmean.amphion.android.cli.Vector3;
 
 public class TriangleRendererDelegate implements PrimitiveRendererDelegate {
 
@@ -23,11 +25,6 @@ public class TriangleRendererDelegate implements PrimitiveRendererDelegate {
 
     private int programId;
 
-    private float[] vertices = {
-            -0.5f, -0.5f, 0f,
-             0.5f, -0.5f, 0f,
-             0.5f,  0.5f, 0f};
-
     private FloatBuffer triangleBuffer;
 
     private static final String TAG = "TriangleRenderer";
@@ -40,6 +37,16 @@ public class TriangleRendererDelegate implements PrimitiveRendererDelegate {
     @Override
     public void onRender(PrimitiveRenderingContext primitiveRenderingContext) {
         Log.d(TAG, "triangle render");
+
+        GeometryPrimitiveData gp = primitiveRenderingContext.getGeometryPrimitiveData();
+
+        Vector3 tlp = gp.getTlPositionN();
+        Vector3 brp = gp.getBrPositionN();
+
+        float[] vertices = {
+                tlp.getX(), tlp.getY(), tlp.getZ(),
+                brp.getX(), brp.getY(), brp.getZ(),
+                tlp.getX(), brp.getY(), brp.getZ()};
 
         ByteBuffer tempTriangleBuffer = ByteBuffer.allocateDirect(vertices.length * 4);
 

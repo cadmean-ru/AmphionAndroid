@@ -12,6 +12,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import ru.cadmean.amphion.android.cli.ExecDelegate;
+import ru.cadmean.amphion.android.cli.Vector3;
 import ru.cadmean.amphion.android.droidCli.DroidCli;
 
 public class MyRenderer implements GLSurfaceView.Renderer {
@@ -20,6 +21,8 @@ public class MyRenderer implements GLSurfaceView.Renderer {
     private final GLSurfaceView glView;
 
     private static final String TAG = "MyRenderer";
+
+    private static int width, height;
 
     public MyRenderer(GLSurfaceView glView) {
         this.glView = glView;
@@ -36,6 +39,9 @@ public class MyRenderer implements GLSurfaceView.Renderer {
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
         GLES20.glViewport(0,0, width, height);
+        MyRenderer.width = width;
+        MyRenderer.height = height;
+        AndroidFrontend.sendCallback(-100, "");
     }
 
     @Override
@@ -46,5 +52,9 @@ public class MyRenderer implements GLSurfaceView.Renderer {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
         renderingPerformer.execute();
+    }
+
+    static Vector3 getSurfaceSize() {
+        return new Vector3(width, height, 0);
     }
 }
