@@ -38,21 +38,21 @@ children:
       "y": 0
       z: 0
     position:
-      x: 0
-      "y": 0
+      x: 10
+      "y": 10
       z: 0
     rotation:
       x: 0
       "y": 0
       z: 0
     size:
-      x: 169
-      "y": 169
+      x: 369
+      "y": 369
       z: 0
   components:
     - name: github.com/cadmean-ru/amphion/engine/builtin.ShapeView
       state:
-        fillColor: "#ff0000"
+        fillColor: "#696900"
         strokeColor: "#0000"
         strokeWeight: 0
         cornerRadius: 0
