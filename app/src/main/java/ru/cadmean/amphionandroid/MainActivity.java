@@ -2,17 +2,23 @@ package ru.cadmean.amphionandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import ru.cadmean.amphion.android.bind.Bind;
+import android.view.View;
+
+import ru.cadmean.amphion.android.droidCli.DroidCli;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new MyGLView(this));
 
-        Bind.amphionInitAndroid(new AndroidFrontend(this), new AndroidResourceManager(this), new AndroidRendererDelegate());
+        MyGLView myGLView = new MyGLView(this);
+
+        DroidCli.amphionInitAndroid(
+                new AndroidFrontend(this, myGLView),
+                new AndroidResourceManager(this),
+                new AndroidRendererDelegate(myGLView));
+
+        setContentView(myGLView);
     }
-
-    
 }

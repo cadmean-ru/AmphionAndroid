@@ -26,6 +26,7 @@ public class AndroidResourceManager implements ResourceManagerDelegate {
         String mLine;
         while ((mLine = reader.readLine()) != null) {
             stringBuilder.append(mLine);
+            stringBuilder.append('\n');
         }
 
         return stringBuilder.toString().getBytes();
