@@ -56,7 +56,7 @@ children:
         strokeColor: "#0000"
         strokeWeight: 0
         cornerRadius: 0
-        pType: 5
+        pType: $BuiltinShapeRectangle
     - name: github.com/cadmean-ru/amphion/frontend/ios/bind.IosTestController
       state: {}
     - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary

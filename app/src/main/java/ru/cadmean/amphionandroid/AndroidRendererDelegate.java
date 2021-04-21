@@ -42,6 +42,7 @@ public class AndroidRendererDelegate implements RendererDelegate {
         GLES20.glPixelStorei(GLES20.GL_UNPACK_ALIGNMENT, 1);
 
         DroidCli.registerPrimitiveRendererDelegate(Cli.PrimitiveTriangle, new TriangleRendererDelegate(shaderLoader, glView));
+        DroidCli.registerPrimitiveRendererDelegate(Cli.PrimitiveRectangle, new RectangleRendererDelegate(shaderLoader, glView));
     }
 
     @Override
