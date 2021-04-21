@@ -7,9 +7,11 @@ import java.nio.FloatBuffer;
 public class PrimitiveData {
     int vbo;
 
-    PrimitiveData() {
-        int[] newBuffers = new int[1];
-        GLES20.glGenBuffers(1, newBuffers, 0);
-        vbo = newBuffers[0];
+    PrimitiveData(MyGLView glView) {
+        glView.queueEvent(() -> {
+            int[] newBuffers = new int[1];
+            GLES20.glGenBuffers(1, newBuffers, 0);
+            vbo = newBuffers[0];
+        });
     }
 }

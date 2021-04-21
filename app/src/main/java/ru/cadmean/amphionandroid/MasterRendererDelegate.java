@@ -11,14 +11,16 @@ abstract class MasterRendererDelegate implements PrimitiveRendererDelegate {
     protected Map<Long, PrimitiveData> primitiveData = new HashMap();
     protected int programId;
     protected ShaderLoader shaderLoader;
+    protected MyGLView glView;
 
-    MasterRendererDelegate(ShaderLoader shaderLoader) {
+    MasterRendererDelegate(ShaderLoader shaderLoader, MyGLView glView) {
         this.shaderLoader = shaderLoader;
+        this.glView = glView;
     }
 
     @Override
     public void onSetPrimitive(PrimitiveRenderingContext primitiveRenderingContext) {
-        primitiveData.put(primitiveRenderingContext.getPrimitiveId(), new PrimitiveData());
+        primitiveData.put(primitiveRenderingContext.getPrimitiveId(), new PrimitiveData(glView));
     }
 
     @Override

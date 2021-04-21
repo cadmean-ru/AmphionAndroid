@@ -16,8 +16,8 @@ class TriangleRendererDelegate extends MasterRendererDelegate {
 
     final int stride = 28;
 
-    TriangleRendererDelegate(ShaderLoader shaderLoader) {
-        super(shaderLoader);
+    TriangleRendererDelegate(ShaderLoader shaderLoader, MyGLView glView) {
+        super(shaderLoader, glView);
     }
 
     @Override
