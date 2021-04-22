@@ -23,6 +23,7 @@ class TriangleRendererDelegate extends MasterRendererDelegate {
     @Override
     public void onStart() {
         Log.d(TAG, "triangle start");
+        Log.d(TAG, Thread.currentThread().getName());
 
         int vertexId = shaderLoader.loadAndCompile(R.raw.triangle_vertex, GLES20.GL_VERTEX_SHADER);
         int fragmentId = shaderLoader.loadAndCompile(R.raw.triangle_fragment, GLES20.GL_FRAGMENT_SHADER);
@@ -33,15 +34,19 @@ class TriangleRendererDelegate extends MasterRendererDelegate {
     @Override
     public void onRender(PrimitiveRenderingContext primitiveRenderingContext) {
         Log.d(TAG, "triangle render");
+        Log.d(TAG, Thread.currentThread().getName());
 
         GeometryPrimitiveData gp = primitiveRenderingContext.getGeometryPrimitiveData();
         PrimitiveData prData = primitiveData.get(primitiveRenderingContext.getPrimitiveId());
         if (prData == null) {
+            Log.d(TAG, "bruh");
             return;
         }
 
         GLES20.glUseProgram(programId);
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, prData.vbo);
+
+        Log.d(TAG, String.format("Redraw: %b", primitiveRenderingContext.getRedraw()));
 
         if (primitiveRenderingContext.getRedraw()) {
             Log.d(TAG, "Triangle was drawn");
@@ -76,9 +81,11 @@ class TriangleRendererDelegate extends MasterRendererDelegate {
 
             GLES20.glEnableVertexAttribArray(posId);
             GLES20.glEnableVertexAttribArray(colId);
+            Log.d(TAG, "Here2");
         }
 
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 3);
+        Log.d(TAG, "Here");
 
 //        GLES20.glDisableVertexAttribArray(posId);
 //        GLES20.glDisableVertexAttribArray(colId);

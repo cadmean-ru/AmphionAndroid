@@ -24,16 +24,18 @@ public class MyRenderer implements GLSurfaceView.Renderer {
 
     private static int width, height;
 
+    static boolean renderingRequested;
+
     public MyRenderer(GLSurfaceView glView) {
         this.glView = glView;
     }
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        renderingPerformer = DroidCli.getRenderingPerformer();
         Log.d(TAG, "surface created");
         DroidCli.getRendererPrepareDelegate().execute();
         AndroidFrontend.sendCallback(-111, "");
+        renderingPerformer = DroidCli.getRenderingPerformer();
     }
 
     @Override
@@ -51,7 +53,10 @@ public class MyRenderer implements GLSurfaceView.Renderer {
 
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
-        renderingPerformer.execute();
+        if (renderingRequested)
+            renderingPerformer.execute();
+
+        renderingRequested = false;
     }
 
     static Vector3 getSurfaceSize() {

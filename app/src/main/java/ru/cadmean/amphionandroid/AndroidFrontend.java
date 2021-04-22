@@ -11,32 +11,25 @@ import ru.cadmean.amphion.android.cli.Context;
 import ru.cadmean.amphion.android.cli.ExecDelegate;
 import ru.cadmean.amphion.android.cli.FrontendDelegate;
 import ru.cadmean.amphion.android.cli.Vector3;
+import ru.cadmean.amphion.android.dispatch.Message;
+import ru.cadmean.amphion.android.dispatch.MessageDispatcher;
+import ru.cadmean.amphion.android.dispatch.WorkDispatcher;
 
 public class AndroidFrontend implements FrontendDelegate {
     private final android.content.Context ctx;
-    private final Handler mainHandler;
+    private final MainWorkDispatcher mainWorkDispatcher;
     private final MyGLView glView;
-    private static CallbackHandler callbackHandler;
+    private static MessageDispatcher callbackDispatcher;
 
     public AndroidFrontend(android.content.Context ctx, MyGLView glView) {
         this.ctx = ctx;
-        mainHandler = new Handler(ctx.getMainLooper());
+        mainWorkDispatcher = new MainWorkDispatcher(new Handler(ctx.getMainLooper()));
         this.glView = glView;
     }
 
     @Override
     public void commencePanic(String s, String s1) {
 
-    }
-
-    @Override
-    public void executeOnMainThread(ExecDelegate execDelegate) {
-        mainHandler.post(execDelegate::execute);
-    }
-
-    @Override
-    public void executeOnRenderingThread(ExecDelegate execDelegate) {
-        glView.queueEvent(execDelegate::execute);
     }
 
     @Override
@@ -72,6 +65,16 @@ public class AndroidFrontend implements FrontendDelegate {
     }
 
     @Override
+    public WorkDispatcher getMainThreadDispatcher() {
+        return mainWorkDispatcher;
+    }
+
+    @Override
+    public WorkDispatcher getRenderingThreadDispatcher() {
+        return glView;
+    }
+
+    @Override
     public void init() {
 
     }
@@ -87,14 +90,14 @@ public class AndroidFrontend implements FrontendDelegate {
     }
 
     @Override
-    public void setCallback(CallbackHandler callbackHandler) {
-        AndroidFrontend.callbackHandler = callbackHandler;
+    public void setCallbackDispatcher(MessageDispatcher messageDispatcher) {
+        callbackDispatcher = messageDispatcher;
     }
 
     static void sendCallback(long code, String data) {
-        if (callbackHandler == null)
+        if (callbackDispatcher == null)
             return;
 
-        callbackHandler.handleCallback(code, data);
+        callbackDispatcher.sendMessage(new Message(code, data));
     }
 }

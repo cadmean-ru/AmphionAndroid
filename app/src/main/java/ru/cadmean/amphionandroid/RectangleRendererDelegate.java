@@ -40,6 +40,7 @@ public class RectangleRendererDelegate extends MasterRendererDelegate {
         GeometryPrimitiveData gp = primitiveRenderingContext.getGeometryPrimitiveData();
         PrimitiveData prData = primitiveData.get(primitiveRenderingContext.getPrimitiveId());
         if (prData == null) {
+            Log.d(TAG, "rect bruh");
             return;
         }
 
@@ -96,5 +97,6 @@ public class RectangleRendererDelegate extends MasterRendererDelegate {
         }
 
         GLES20.glDrawElements(GLES20.GL_TRIANGLES, 6, GLES20.GL_UNSIGNED_INT, prData.ebo);
+        Log.d(TAG, "Rect here");
     }
 }

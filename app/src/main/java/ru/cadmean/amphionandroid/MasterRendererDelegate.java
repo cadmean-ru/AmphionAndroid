@@ -1,6 +1,7 @@
 package ru.cadmean.amphionandroid;
 
 import android.opengl.GLES20;
+import android.util.Log;
 import ru.cadmean.amphion.android.cli.PrimitiveRendererDelegate;
 import ru.cadmean.amphion.android.cli.PrimitiveRenderingContext;
 
@@ -13,6 +14,8 @@ abstract class MasterRendererDelegate implements PrimitiveRendererDelegate {
     protected ShaderLoader shaderLoader;
     protected MyGLView glView;
 
+    private final static String TAG = "MasterDelegate";
+
     MasterRendererDelegate(ShaderLoader shaderLoader, MyGLView glView) {
         this.shaderLoader = shaderLoader;
         this.glView = glView;
@@ -20,19 +23,25 @@ abstract class MasterRendererDelegate implements PrimitiveRendererDelegate {
 
     @Override
     public void onSetPrimitive(PrimitiveRenderingContext primitiveRenderingContext) {
+        Log.d(TAG, "onSet");
+        Log.d(TAG, Thread.currentThread().getName());
         primitiveData.put(primitiveRenderingContext.getPrimitiveId(), new PrimitiveData(glView));
+        Log.d(TAG, "onSet finished");
     }
 
     @Override
     public void onRemovePrimitive(PrimitiveRenderingContext primitiveRenderingContext) {
+        Log.d(TAG, "onRemove");
+        Log.d(TAG, Thread.currentThread().getName());
+
         primitiveData.remove(primitiveRenderingContext.getPrimitiveId());
         PrimitiveData data = primitiveData.get(primitiveRenderingContext.getPrimitiveId());
         if (data == null) {
             return;
         }
 
-        int[] buffersToDelete = new int[] { data.vbo };
-        GLES20.glDeleteBuffers(1, buffersToDelete, 0);
+        int[] buffersToDelete = new int[] { data.vbo, data.ebo };
+        GLES20.glDeleteBuffers(2, buffersToDelete, 0);
     }
 
     @Override
