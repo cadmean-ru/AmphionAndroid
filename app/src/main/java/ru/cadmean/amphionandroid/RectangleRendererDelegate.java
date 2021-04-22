@@ -43,7 +43,7 @@ public class RectangleRendererDelegate extends MasterRendererDelegate {
 
         GLES20.glUseProgram(programId);
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, prData.vbo);
-        GLES20.glBindBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, prData.ebo);
+//        GLES20.glBindBuffer(GLES20.GL_ELEMENT_ARRAY_BUFFER, prData.ebo);
 
         if (primitiveRenderingContext.getRedraw()) {
             Log.d(TAG, "Rectangle was drawn");
@@ -57,7 +57,9 @@ public class RectangleRendererDelegate extends MasterRendererDelegate {
                     tlp.getX(), tlp.getY(), tlp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
                     tlp.getX(), brp.getY(), brp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
                     brp.getX(), brp.getY(), brp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
+                    tlp.getX(), tlp.getY(), tlp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
                     brp.getX(), tlp.getY(), brp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
+                    brp.getX(), brp.getY(), brp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
             };
 
             ByteBuffer tempTriangleBuffer = ByteBuffer.allocateDirect(vertices.length * 4);
@@ -68,20 +70,20 @@ public class RectangleRendererDelegate extends MasterRendererDelegate {
             buffer.put(vertices);
             buffer.position(0);
 
-            short[] indices = new short[] {
-                    0, 1, 2,
-                    0, 3, 2,
-            };
+//            short[] indices = new short[] {
+//                    0, 1, 2,
+//                    0, 3, 2,
+//            };
 
-            ByteBuffer indicesBuffer = ByteBuffer.allocateDirect(indices.length * 4);
-            indicesBuffer.order(ByteOrder.nativeOrder());
-
-            ShortBuffer indicesIntBuffer = indicesBuffer.asShortBuffer();
-            indicesIntBuffer.put(indices);
-            indicesIntBuffer.position(0);
+//            ByteBuffer indicesBuffer = ByteBuffer.allocateDirect(indices.length * 4);
+//            indicesBuffer.order(ByteOrder.nativeOrder());
+//
+//            ShortBuffer indicesIntBuffer = indicesBuffer.asShortBuffer();
+//            indicesIntBuffer.put(indices);
+//            indicesIntBuffer.position(0);
 
             GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, vertices.length * 4, buffer, GLES20.GL_STATIC_DRAW);
-            GLES20.glBufferData(GLES20.GL_ELEMENT_ARRAY_BUFFER, indices.length * 2, indicesIntBuffer, GLES20.GL_STATIC_DRAW);
+//            GLES20.glBufferData(GLES20.GL_ELEMENT_ARRAY_BUFFER, indices.length * 2, indicesIntBuffer, GLES20.GL_STATIC_DRAW);
 
             int posId = GLES20.glGetAttribLocation(programId, "pos");
             int colId = GLES20.glGetAttribLocation(programId, "col");
@@ -93,7 +95,8 @@ public class RectangleRendererDelegate extends MasterRendererDelegate {
             GLES20.glEnableVertexAttribArray(colId);
         }
 
-        GLES20.glDrawElements(GLES20.GL_TRIANGLES, 6, GLES20.GL_UNSIGNED_SHORT, prData.ebo);
+//        GLES20.glDrawElements(GLES20.GL_TRIANGLES, 6, GLES20.GL_UNSIGNED_INT, prData.ebo);
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
         Log.d(TAG, "Rect here");
     }
 }
