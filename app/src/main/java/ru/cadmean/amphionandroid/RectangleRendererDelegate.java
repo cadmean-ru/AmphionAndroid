@@ -8,10 +8,7 @@ import ru.cadmean.amphion.android.cli.Vector3;
 import ru.cadmean.amphion.android.cli.Vector4;
 
 import javax.microedition.khronos.opengles.GL;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
+import java.nio.*;
 
 public class RectangleRendererDelegate extends MasterRendererDelegate {
 
@@ -71,7 +68,7 @@ public class RectangleRendererDelegate extends MasterRendererDelegate {
             buffer.put(vertices);
             buffer.position(0);
 
-            int[] indices = new int[] {
+            short[] indices = new short[] {
                     0, 1, 2,
                     0, 3, 2,
             };
@@ -79,12 +76,12 @@ public class RectangleRendererDelegate extends MasterRendererDelegate {
             ByteBuffer indicesBuffer = ByteBuffer.allocateDirect(indices.length * 4);
             indicesBuffer.order(ByteOrder.nativeOrder());
 
-            IntBuffer indicesIntBuffer = indicesBuffer.asIntBuffer();
+            ShortBuffer indicesIntBuffer = indicesBuffer.asShortBuffer();
             indicesIntBuffer.put(indices);
             indicesIntBuffer.position(0);
 
             GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, vertices.length * 4, buffer, GLES20.GL_STATIC_DRAW);
-            GLES20.glBufferData(GLES20.GL_ELEMENT_ARRAY_BUFFER, indices.length * 4, indicesIntBuffer, GLES20.GL_STATIC_DRAW);
+            GLES20.glBufferData(GLES20.GL_ELEMENT_ARRAY_BUFFER, indices.length * 2, indicesIntBuffer, GLES20.GL_STATIC_DRAW);
 
             int posId = GLES20.glGetAttribLocation(programId, "pos");
             int colId = GLES20.glGetAttribLocation(programId, "col");
@@ -96,7 +93,7 @@ public class RectangleRendererDelegate extends MasterRendererDelegate {
             GLES20.glEnableVertexAttribArray(colId);
         }
 
-        GLES20.glDrawElements(GLES20.GL_TRIANGLES, 6, GLES20.GL_UNSIGNED_INT, prData.ebo);
+        GLES20.glDrawElements(GLES20.GL_TRIANGLES, 6, GLES20.GL_UNSIGNED_SHORT, prData.ebo);
         Log.d(TAG, "Rect here");
     }
 }
