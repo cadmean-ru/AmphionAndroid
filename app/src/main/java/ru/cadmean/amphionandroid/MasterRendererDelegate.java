@@ -12,20 +12,18 @@ abstract class MasterRendererDelegate implements PrimitiveRendererDelegate {
     protected Map<Long, PrimitiveData> primitiveData = new HashMap();
     protected int programId;
     protected ShaderLoader shaderLoader;
-    protected MyGLView glView;
 
     private final static String TAG = "MasterDelegate";
 
-    MasterRendererDelegate(ShaderLoader shaderLoader, MyGLView glView) {
+    MasterRendererDelegate(ShaderLoader shaderLoader) {
         this.shaderLoader = shaderLoader;
-        this.glView = glView;
     }
 
     @Override
     public void onSetPrimitive(PrimitiveRenderingContext primitiveRenderingContext) {
         Log.d(TAG, "onSet");
         Log.d(TAG, Thread.currentThread().getName());
-        primitiveData.put(primitiveRenderingContext.getPrimitiveId(), new PrimitiveData(glView));
+        primitiveData.put(primitiveRenderingContext.getPrimitiveId(), new PrimitiveData());
         Log.d(TAG, "onSet finished");
     }
 

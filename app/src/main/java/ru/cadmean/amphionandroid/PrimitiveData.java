@@ -8,8 +8,9 @@ import java.nio.FloatBuffer;
 public class PrimitiveData {
     int vbo;
     int ebo;
+    int tex;
 
-    PrimitiveData(MyGLView glView) {
+    PrimitiveData() {
         Log.d("Data", "New");
         Log.d("Data", Thread.currentThread().getName());
 

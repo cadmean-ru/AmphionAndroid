@@ -52,8 +52,9 @@ public class AndroidRendererDelegate implements RendererDelegate {
         GLES20.glBlendFunc(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         GLES20.glPixelStorei(GLES20.GL_UNPACK_ALIGNMENT, 1);
 
-        DroidCli.registerPrimitiveRendererDelegate(Cli.PrimitiveTriangle, new TriangleRendererDelegate(shaderLoader, glView));
-        DroidCli.registerPrimitiveRendererDelegate(Cli.PrimitiveRectangle, new RectangleRendererDelegate(shaderLoader, glView));
+        DroidCli.registerPrimitiveRendererDelegate(Cli.PrimitiveTriangle, new TriangleRendererDelegate(shaderLoader));
+        DroidCli.registerPrimitiveRendererDelegate(Cli.PrimitiveRectangle, new RectangleRendererDelegate(shaderLoader));
+        DroidCli.registerPrimitiveRendererDelegate(Cli.PrimitiveImage, new ImageRenderDelegate(shaderLoader, glView.getContext()));
 
         Log.d(TAG, "onPrepare finished");
     }

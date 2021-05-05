@@ -86,7 +86,7 @@ children:
   components:
     - name: github.com/cadmean-ru/amphion/engine/builtin.ImageView
       state:
-        resId: 2
+        resId: 1
         imageUrl: ""
 components: []
 id: 0
