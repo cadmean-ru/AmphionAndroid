@@ -114,10 +114,10 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
             float[] vertices = {
                     tlp.getX(), tlp.getY(), 0, 0, 0,  // top left
                     tlp.getX(), brp.getY(), 0, 0, 1,  // bottom left
-                    brp.getX(), brp.getY(), 0, 1, 0,  // bottom right
+                    brp.getX(), brp.getY(), 0, 1, 1,  // bottom right
                     tlp.getX(), tlp.getY(), 0, 0, 0,  // top left
-                    brp.getX(), tlp.getY(), 0, 1, 1,  // top right
-                    brp.getX(), brp.getY(), 0, 1, 0,  // bottom right
+                    brp.getX(), tlp.getY(), 0, 1, 0,  // top right
+                    brp.getX(), brp.getY(), 0, 1, 1,  // bottom right
             };
 
             ByteBuffer tempImageBuffer = ByteBuffer.allocateDirect(vertices.length * 4);
