@@ -58,7 +58,7 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, prData.vbo);
 
         if (primitiveRenderingContext.getRedraw()) {
-            Log.d(TAG, "Rectangle is being drawn");
+            Log.d(TAG, "Image is being drawn");
 
             Vector3 tlp = ip.getTlPositionN();
             Vector3 brp = ip.getBrPositionN();
@@ -69,10 +69,18 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
                 prData.tex = tempTex[0];
 
                 Bitmap bitmap = null;
+//                BitmapFactory.Options options = new BitmapFactory.Options();
+//                options.inJustDecodeBounds = true;
                 try {
-                    bitmap = BitmapFactory.decodeFileDescriptor(ctx.getAssets().openFd(ip.getImageUrl()).getFileDescriptor());
+//                    bitmap = BitmapFactory.decodeFileDescriptor(ctx.getAssets().openFd(ip.getImageUrl()).getFileDescriptor(), null, options);
+                    bitmap = BitmapFactory.decodeStream(ctx.getAssets().open(ip.getImageUrl()));
                 } catch (IOException e) {
                     e.printStackTrace();
+                    return;
+                }
+
+                if (bitmap == null) {
+                    Log.d(TAG, "Failed to decode image");
                     return;
                 }
 
@@ -120,8 +128,8 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
 
             GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, vertices.length * 4, buffer, GLES20.GL_STATIC_DRAW);
 
-            int posId = GLES20.glGetAttribLocation(programId, "vPos");
-            int texId = GLES20.glGetAttribLocation(programId, "vTexCoord");
+            int posId = GLES20.glGetAttribLocation(programId, "pos");
+            int texId = GLES20.glGetAttribLocation(programId, "texCoord");
 
             GLES20.glVertexAttribPointer(posId, 3, GLES20.GL_FLOAT, false, stride, 0);
             GLES20.glVertexAttribPointer(texId, 2, GLES20.GL_FLOAT, false, stride, 12);
