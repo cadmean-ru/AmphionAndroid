@@ -68,11 +68,8 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
                 GLES20.glGenTextures(1, tempTex, 0);
                 prData.tex = tempTex[0];
 
-                Bitmap bitmap = null;
-//                BitmapFactory.Options options = new BitmapFactory.Options();
-//                options.inJustDecodeBounds = true;
+                Bitmap bitmap;
                 try {
-//                    bitmap = BitmapFactory.decodeFileDescriptor(ctx.getAssets().openFd(ip.getImageUrl()).getFileDescriptor(), null, options);
                     bitmap = BitmapFactory.decodeStream(ctx.getAssets().open(ip.getImageUrl()));
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -108,6 +105,7 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
                 GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_REPEAT);
 
                 GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
+                bitmap.recycle();
             }
 
             float[] vertices = {
@@ -128,8 +126,8 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
 
             GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, vertices.length * 4, buffer, GLES20.GL_STATIC_DRAW);
 
-            int posId = GLES20.glGetAttribLocation(programId, "pos");
-            int texId = GLES20.glGetAttribLocation(programId, "texCoord");
+            int posId = GLES20.glGetAttribLocation(programId, "vPos");
+            int texId = GLES20.glGetAttribLocation(programId, "vTexCoord");
 
             GLES20.glVertexAttribPointer(posId, 3, GLES20.GL_FLOAT, false, stride, 0);
             GLES20.glVertexAttribPointer(texId, 2, GLES20.GL_FLOAT, false, stride, 12);
@@ -138,28 +136,13 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
             GLES20.glEnableVertexAttribArray(texId);
         }
 
+        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, prData.tex);
+
+        int texHandle = GLES20.glGetUniformLocation(programId, "uTexture");
+        GLES20.glUniform1i(texHandle, 0);
+
         GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
-    }
-
-    private byte[] readImage(String url) {
-        byte[] bytes;
-        try {
-            AssetFileDescriptor assetFileDescriptor = ctx.getAssets().openFd(url);
-
-            bytes = new byte[(int)assetFileDescriptor.getLength()];
-
-            FileInputStream fis = new FileInputStream(assetFileDescriptor.getFileDescriptor());
-
-            fis.read(bytes);
-
-            fis.close();
-        } catch (IOException e) {
-            bytes = new byte[0];
-            e.printStackTrace();
-        }
-
-        return bytes;
     }
 }
