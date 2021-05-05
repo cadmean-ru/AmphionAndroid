@@ -23,7 +23,8 @@ abstract class MasterRendererDelegate implements PrimitiveRendererDelegate {
     public void onSetPrimitive(PrimitiveRenderingContext primitiveRenderingContext) {
         Log.d(TAG, "onSet");
         Log.d(TAG, Thread.currentThread().getName());
-        primitiveData.put(primitiveRenderingContext.getPrimitiveId(), new PrimitiveData());
+        if (!primitiveData.containsKey(primitiveRenderingContext.getPrimitiveId()))
+            primitiveData.put(primitiveRenderingContext.getPrimitiveId(), new PrimitiveData());
         Log.d(TAG, "onSet finished");
     }
 

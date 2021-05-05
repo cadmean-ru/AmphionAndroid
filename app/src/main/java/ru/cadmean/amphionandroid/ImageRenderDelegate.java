@@ -59,7 +59,7 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
         GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, prData.vbo);
 
         if (primitiveRenderingContext.getRedraw()) {
-            Log.d(TAG, "Image is being drawn");
+            Log.d(TAG, "Image is being drawn " + primitiveRenderingContext.getPrimitiveId());
 
             Vector3 tlp = ip.getTlPositionN();
             Vector3 brp = ip.getBrPositionN();
@@ -68,6 +68,7 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
                 int[] tempTex = new int[1];
                 GLES20.glGenTextures(1, tempTex, 0);
                 prData.tex = tempTex[0];
+//                primitiveData.put(primitiveRenderingContext.getPrimitiveId(), prData);
 
                 Bitmap bitmap;
                 try {
