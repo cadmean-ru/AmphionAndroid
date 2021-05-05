@@ -53,12 +53,12 @@ public class RectangleRendererDelegate extends MasterRendererDelegate {
             Vector4 color = gp.getFillColorN();
 
             float[] vertices = {
-                    tlp.getX(), tlp.getY(), tlp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
-                    tlp.getX(), brp.getY(), brp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
-                    brp.getX(), brp.getY(), brp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
-                    tlp.getX(), tlp.getY(), tlp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
-                    brp.getX(), tlp.getY(), brp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
-                    brp.getX(), brp.getY(), brp.getZ(), color.getX(), color.getY(), color.getZ(), color.getW(),
+                    tlp.getX(), tlp.getY(), 0, color.getX(), color.getY(), color.getZ(), color.getW(),
+                    tlp.getX(), brp.getY(), 0, color.getX(), color.getY(), color.getZ(), color.getW(),
+                    brp.getX(), brp.getY(), 0, color.getX(), color.getY(), color.getZ(), color.getW(),
+                    tlp.getX(), tlp.getY(), 0, color.getX(), color.getY(), color.getZ(), color.getW(),
+                    brp.getX(), tlp.getY(), 0, color.getX(), color.getY(), color.getZ(), color.getW(),
+                    brp.getX(), brp.getY(), 0, color.getX(), color.getY(), color.getZ(), color.getW(),
             };
 
             ByteBuffer tempTriangleBuffer = ByteBuffer.allocateDirect(vertices.length * 4);
