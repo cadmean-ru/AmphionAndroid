@@ -5,6 +5,7 @@ import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLES20;
+import android.opengl.GLUtils;
 import android.util.Log;
 import ru.cadmean.amphion.android.cli.ImagePrimitiveData;
 import ru.cadmean.amphion.android.cli.PrimitiveRenderingContext;
@@ -86,35 +87,37 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
                 bitmap.copyPixelsToBuffer(pixelBuffer);
 
                 GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, prData.tex);
-                
-                GLES20.glTexImage2D(
-                        GLES20.GL_TEXTURE_2D,
-                        0,
-                        GLES20.GL_RGBA,
-                        bitmap.getWidth(),
-                        bitmap.getHeight(),
-                        0,
-                        GLES20.GL_RGBA,
-                        GLES20.GL_UNSIGNED_BYTE,
-                        pixelBuffer
-                );
+
+                GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
+
+//                GLES20.glTexImage2D(
+//                        GLES20.GL_TEXTURE_2D,
+//                        0,
+//                        GLES20.GL_RGBA,
+//                        bitmap.getWidth(),
+//                        bitmap.getHeight(),
+//                        0,
+//                        GLES20.GL_RGBA,
+//                        GLES20.GL_UNSIGNED_BYTE,
+//                        pixelBuffer
+//                );
 
                 GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_REPEAT);
                 GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_REPEAT);
-                GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
-                GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_REPEAT);
+                GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
+                GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_NEAREST);
 
                 GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
                 bitmap.recycle();
             }
 
             float[] vertices = {
-                    tlp.getX(), tlp.getY(), tlp.getZ(), 0, 0,  // top left
-                    tlp.getX(), brp.getY(), brp.getZ(), 0, 1,  // bottom left
-                    brp.getX(), brp.getY(), brp.getZ(), 1, 0,  // bottom right
-                    tlp.getX(), tlp.getY(), tlp.getZ(), 0, 0,  // top left
-                    brp.getX(), tlp.getY(), brp.getZ(), 1, 1,  // top right
-                    brp.getX(), brp.getY(), brp.getZ(), 1, 0,  // bottom right
+                    tlp.getX(), tlp.getY(), 0, 0, 0,  // top left
+                    tlp.getX(), brp.getY(), 0, 0, 1,  // bottom left
+                    brp.getX(), brp.getY(), 0, 1, 0,  // bottom right
+                    tlp.getX(), tlp.getY(), 0, 0, 0,  // top left
+                    brp.getX(), tlp.getY(), 0, 1, 1,  // top right
+                    brp.getX(), brp.getY(), 0, 1, 0,  // bottom right
             };
 
             ByteBuffer tempImageBuffer = ByteBuffer.allocateDirect(vertices.length * 4);
