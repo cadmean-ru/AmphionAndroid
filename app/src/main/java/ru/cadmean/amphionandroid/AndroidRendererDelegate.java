@@ -55,6 +55,7 @@ public class AndroidRendererDelegate implements RendererDelegate {
         DroidCli.registerPrimitiveRendererDelegate(Cli.PrimitiveTriangle, new TriangleRendererDelegate(shaderLoader));
         DroidCli.registerPrimitiveRendererDelegate(Cli.PrimitiveRectangle, new RectangleRendererDelegate(shaderLoader));
         DroidCli.registerPrimitiveRendererDelegate(Cli.PrimitiveImage, new ImageRenderDelegate(shaderLoader, glView.getContext()));
+        DroidCli.registerPrimitiveRendererDelegate(Cli.PrimitiveText, new TextRenderDelegate(shaderLoader, glView.getContext()));
 
         Log.d(TAG, "onPrepare finished");
     }

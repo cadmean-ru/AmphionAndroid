@@ -68,7 +68,6 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
                 int[] tempTex = new int[1];
                 GLES20.glGenTextures(1, tempTex, 0);
                 prData.tex = tempTex[0];
-//                primitiveData.put(primitiveRenderingContext.getPrimitiveId(), prData);
 
                 Bitmap bitmap;
                 try {
@@ -91,18 +90,6 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
 
                 GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
 
-//                GLES20.glTexImage2D(
-//                        GLES20.GL_TEXTURE_2D,
-//                        0,
-//                        GLES20.GL_RGBA,
-//                        bitmap.getWidth(),
-//                        bitmap.getHeight(),
-//                        0,
-//                        GLES20.GL_RGBA,
-//                        GLES20.GL_UNSIGNED_BYTE,
-//                        pixelBuffer
-//                );
-
                 GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_S, GLES20.GL_REPEAT);
                 GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_WRAP_T, GLES20.GL_REPEAT);
                 GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_NEAREST);
@@ -121,10 +108,10 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
                     brp.getX(), brp.getY(), 0, 1, 1,  // bottom right
             };
 
-            ByteBuffer tempImageBuffer = ByteBuffer.allocateDirect(vertices.length * 4);
-            tempImageBuffer.order(ByteOrder.nativeOrder());
+            ByteBuffer tempTextBuffer = ByteBuffer.allocateDirect(vertices.length * 4);
+            tempTextBuffer.order(ByteOrder.nativeOrder());
 
-            FloatBuffer buffer = tempImageBuffer.asFloatBuffer();
+            FloatBuffer buffer = tempTextBuffer.asFloatBuffer();
             buffer.put(vertices);
             buffer.position(0);
 
@@ -138,15 +125,17 @@ public class ImageRenderDelegate extends MasterRendererDelegate{
 
             GLES20.glEnableVertexAttribArray(posId);
             GLES20.glEnableVertexAttribArray(texId);
+
+            GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
+            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, prData.tex);
+
+            int texHandle = GLES20.glGetUniformLocation(programId, "uTexture");
+            GLES20.glUniform1i(texHandle, 0);
+
+            int textColorHandle = GLES20.glGetUniformLocation(programId, "uTextColor");
+
+            GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
+            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
         }
-
-        GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, prData.tex);
-
-        int texHandle = GLES20.glGetUniformLocation(programId, "uTexture");
-        GLES20.glUniform1i(texHandle, 0);
-
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, 6);
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
     }
 }

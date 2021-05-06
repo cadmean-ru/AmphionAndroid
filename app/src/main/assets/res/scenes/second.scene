@@ -1,7 +1,7 @@
 children:
 - children: []
-  id: 2
-  name: triangle
+  id: 1
+  name: main text
   transform:
     pivot:
       x: 0
@@ -9,56 +9,25 @@ children:
       z: 0
     position:
       x: 10
-      "y": 10
+      "y": 40
       z: 0
     rotation:
       x: 0
       "y": 0
       z: 0
     size:
-      x: 369
-      "y": 369
+      x: 500
+      "y": 30
       z: 0
   components:
-    - name: github.com/cadmean-ru/amphion/engine/builtin.ShapeView
+    - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
       state:
-        fillColor: "#696900"
-        strokeColor: "#0000"
-        strokeWeight: 0
-        cornerRadius: 0
-        pType: $BuiltinShapeRectangle
+        textColor: "#2c68a8"
+        font: ""
+        fontSize: 20
+        fontWeight: 0
+        text: "bruh"
     - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary
-      state: {}
-    - name: github.com/cadmean-ru/amphion/engine/builtin.MouseMover
-      state: {}
-- children: []
-  id: 3
-  name: imaage
-  transform:
-    pivot:
-      x: 0
-      "y": 0
-      z: 0
-    position:
-      x: 0
-      "y": 1000
-      z: 2
-    rotation:
-      x: 0
-      "y": 0
-      z: 0
-    size:
-      x: 1000
-      "y": 1000
-      z: 0
-  components:
-    - name: github.com/cadmean-ru/amphion/engine/builtin.ImageView
-      state:
-        resId: 2
-        imageUrl: ""
-    - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary
-      state: {}
-    - name: github.com/cadmean-ru/amphion/engine/builtin.MouseMover
       state: {}
 components: []
 id: 0

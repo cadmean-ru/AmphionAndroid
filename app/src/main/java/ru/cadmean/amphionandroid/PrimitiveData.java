@@ -2,6 +2,7 @@ package ru.cadmean.amphionandroid;
 
 import android.opengl.GLES20;
 import android.util.Log;
+import ru.cadmean.amphion.android.atext.Text;
 
 import java.nio.FloatBuffer;
 
@@ -9,6 +10,8 @@ public class PrimitiveData {
     int vbo;
     int ebo;
     int tex;
+    int vbos[];
+    Text text;
 
     PrimitiveData() {
         Log.d("Data", "New");
