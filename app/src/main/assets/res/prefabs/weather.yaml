@@ -1,0 +1,203 @@
+children:
+  - children: []
+    id: 1
+    name: City Name
+    transform:
+      pivot:
+        x: 0
+        "y": 0
+        z: 0
+      position:
+        x: 0
+        "y": 0
+        z: 1
+      rotation:
+        x: 0
+        "y": 0
+        z: 0
+      size:
+        x: 50
+        "y": 50
+        z: 0
+    components:
+      - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+        state:
+          textColor: "#000"
+          font: ""
+          fontSize: 20
+          fontWeight: 0
+          text: "city"
+          hTextAlign: $TextAlignCenter
+          vTextAlign: $TextAlignCenter
+  - children:
+    - children: [ ]
+      id: 3
+      name: Temperature
+      transform:
+        pivot:
+          x: 0
+          "y": 0
+          z: 0
+        position:
+          x: 0
+          "y": 0
+          z: 1
+        rotation:
+          x: 0
+          "y": 0
+          z: 0
+        size:
+          x: 50
+          "y": 50
+          z: 0
+      components:
+        - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+          state:
+            textColor: "#000"
+            font: ""
+            fontSize: 20
+            fontWeight: 0
+            text: "temp"
+            hTextAlign: $TextAlignCenter
+            vTextAlign: $TextAlignCenter
+    - children: [ ]
+      id: 4
+      name: Weather Icon
+      transform:
+        pivot:
+          x: 0
+          "y": 0
+          z: 0
+        position:
+          x: 0
+          "y": 0
+          z: 1
+        rotation:
+          x: 0
+          "y": 0
+          z: 0
+        size:
+          x: 50
+          "y": 50
+          z: 0
+      components:
+        - name: github.com/cadmean-ru/amphion/engine/builtin.ImageView
+          state:
+            resId: 2
+    - children: [ ]
+      id: 5
+      name: Rain
+      transform:
+        pivot:
+          x: 0
+          "y": 0
+          z: 0
+        position:
+          x: 0
+          "y": 0
+          z: 1
+        rotation:
+          x: 0
+          "y": 0
+          z: 0
+        size:
+          x: 50
+          "y": 50
+          z: 0
+      components:
+        - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+          state:
+            textColor: "#000"
+            font: ""
+            fontSize: 20
+            fontWeight: 0
+            text: "rain"
+            hTextAlign: $TextAlignCenter
+            vTextAlign: $TextAlignCenter
+    - children: [ ]
+      id: 6
+      name: Wind
+      transform:
+        pivot:
+          x: 0
+          "y": 0
+          z: 0
+        position:
+          x: 0
+          "y": 0
+          z: 1
+        rotation:
+          x: 0
+          "y": 0
+          z: 0
+        size:
+          x: 50
+          "y": 50
+          z: 0
+      components:
+        - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+          state:
+            textColor: "#000"
+            font: ""
+            fontSize: 20
+            fontWeight: 0
+            text: "wind"
+            hTextAlign: $TextAlignCenter
+            vTextAlign: $TextAlignCenter
+    id: 2
+    name: Weather Grid
+    transform:
+      pivot:
+        x: 0
+        "y": 0
+        z: 0
+      position:
+        x: 0
+        "y": 0
+        z: 1
+      rotation:
+        x: 0
+        "y": 0
+        z: 0
+      size:
+        x: 50
+        "y": 50
+        z: 0
+    components:
+      - name: github.com/cadmean-ru/amphion/engine/builtin.GridLayout
+        state:
+          cols: 2
+          rows: 2
+components:
+  - name: AmphionLand/components.WeatherController
+    state: { }
+  - name: github.com/cadmean-ru/amphion/engine/builtin.GridLayout
+    state:
+      cols: 1
+      rows: 2
+  - name: github.com/cadmean-ru/amphion/engine/builtin.ShapeView
+    state:
+      fillColor: "#666699"
+      strokeColor: "#666666"
+      strokeWeight: 1
+      pType: 3
+      cornerRadius: 69
+id: 0
+name: WeatherWodget
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 100
+    "y": 0
+    z: 2
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 100
+    "y": 200
+    z: 0

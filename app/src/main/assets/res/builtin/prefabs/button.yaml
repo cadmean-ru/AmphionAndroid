@@ -1,0 +1,60 @@
+children:
+  - children: []
+    id: 1
+    name: Button text
+    transform:
+      pivot:
+        x: 0.5
+        "y": 0.5
+        z: 0
+      position:
+        x: -2147483646
+        "y": -2147483646
+        z: 1
+      rotation:
+        x: 0
+        "y": 0
+        z: 0
+      size:
+        x: 60
+        "y": 20
+        z: 0
+    components:
+      - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+        state:
+          textColor: "#000"
+          font: ""
+          fontSize: 20
+          fontWeight: 0
+          text: "Click!"
+components:
+  - name: github.com/cadmean-ru/amphion/engine/builtin.ShapeView
+    state:
+      fillColor: "#0f0"
+      strokeColor: "#000"
+      strokeWeight: 0
+      cornerRadius: 10
+      pType: 3
+  - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary
+    state: {}
+  - name: github.com/cadmean-ru/amphion/engine/builtin.OnClickListener
+    state: {}
+id: 0
+name: Button
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 0
+    "y": 0
+    z: 0
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 80
+    "y": 30
+    z: 1

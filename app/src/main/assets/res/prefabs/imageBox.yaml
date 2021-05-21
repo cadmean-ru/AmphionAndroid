@@ -1,0 +1,25 @@
+children: []
+components:
+  - name: github.com/cadmean-ru/amphion/engine/builtin.ImageView
+    state:
+      resId: -1
+      imageUrl: "res/images/baby-yoda.jpg"
+id: 0
+name: Image Box
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 100
+    "y": 0
+    z: 2
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 100
+    "y": 200
+    z: 0

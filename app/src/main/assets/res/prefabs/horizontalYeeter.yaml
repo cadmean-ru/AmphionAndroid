@@ -1,0 +1,34 @@
+children: []
+components:
+  - name: github.com/cadmean-ru/amphion/engine/builtin.ShapeView
+    state:
+      fillColor: "#123456"
+      strokeColor: "#420"
+      strokeWeight: 1
+      pType: 3
+      cornerRadius: 69
+  - name: github.com/cadmean-ru/amphion/engine/builtin.GridLayout
+    state:
+      cols: 3
+      rows: 1
+  - name: EditorGrid
+    state: {}
+id: 0
+name: Horizontal grid
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 100
+    "y": 0
+    z: 2
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 100
+    "y": 200
+    z: 0

@@ -1,0 +1,33 @@
+children: []
+components:
+  - name: AmphionLand/components.EditorController
+    state: {}
+  - name: github.com/cadmean-ru/amphion/engine/builtin.GridLayout
+    state:
+      rows: 1
+      cols: 2
+  - name: github.com/cadmean-ru/amphion/engine/builtin.ShapeView
+    state:
+      fillColor: "#696969"
+      strokeColor: "#000"
+      strokeWeight: 0
+      pType: 3
+id: 0
+name: Editor
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 0
+    "y": 0
+    z: 0
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 1
+    "y": 1
+    z: 1

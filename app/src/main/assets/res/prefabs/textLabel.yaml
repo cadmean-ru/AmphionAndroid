@@ -1,0 +1,30 @@
+children: []
+components:
+  - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+    state:
+      textColor: "#000"
+      font: ""
+      fontSize: 20
+      fontWeight: 0
+      text: "This is text"
+      hTextAlign: $TextAlignCenter
+      vTextAlign: $TextAlignCenter
+id: 0
+name: Text Label
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 100
+    "y": 0
+    z: 2
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 100
+    "y": 200
+    z: 0

@@ -1,0 +1,60 @@
+children:
+  - children: []
+    id: 1
+    name: main text
+    transform:
+      pivot:
+        x: 0
+        "y": 0
+        z: 0
+      position:
+        x: 0
+        "y": 0
+        z: 1
+      rotation:
+        x: 0
+        "y": 0
+        z: 0
+      size:
+        x: -2147483648
+        "y": -2147483648
+        z: 0
+    components:
+      - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+        state:
+          textColor: "#000"
+          font: ""
+          fontSize: 20
+          fontWeight: 0
+          text: "bruh"
+      - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary
+        state: {}
+#      - name: AmphionLand/components.Zooming
+#        state:
+#          ZoomNumber: 5
+#          EventOn: -14
+#          EventOff: -15
+      - name: github.com/cadmean-ru/amphion/engine/builtin.BoundaryView
+        state: {}
+components:
+  - name: AmphionLand/components.InputField
+    state: {}
+id: 0
+name: Input box
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 100
+    "y": 0
+    z: 1
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 100
+    "y": 200
+    z: 1

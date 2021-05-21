@@ -1,0 +1,66 @@
+children:
+  - children: []
+    id: 1
+    name: Text
+    transform:
+      pivot:
+        x: 0
+        "y": 0
+        z: 0
+      position:
+        x: 0
+        "y": 0
+        z: 1
+      rotation:
+        x: 0
+        "y": 0
+        z: 0
+      size:
+        x: $MatchParent
+        "y": $MatchParent
+        z: 0
+    components:
+      - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+        state:
+          textColor: "#000"
+          font: ""
+          fontSize: 20
+          fontWeight: 0
+          text: "bruh"
+          hTextAlign: $TextAlignCenter
+          vTextAlign: $TextAlignCenter
+components:
+  - name: github.com/cadmean-ru/amphion/engine/builtin.ShapeView
+    state:
+      fillColor: "#666699"
+      strokeColor: "#000"
+      strokeWeight: 1
+      pType: 3
+      cornerRadius: 69
+  - name: AmphionLand/components.PrefabViewerController
+    state: {}
+  - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary
+    state: {}
+  - name: github.com/cadmean-ru/amphion/engine/builtin.EventListener
+    state:
+      eventCode: -4
+      handler: AmphionLand/components.OnClick
+id: 0
+name: Father of prefab
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 100
+    "y": 0
+    z: 2
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 50
+    "y": 30
+    z: 0

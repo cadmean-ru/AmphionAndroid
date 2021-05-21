@@ -1,0 +1,32 @@
+children: []
+components:
+  - name: github.com/cadmean-ru/amphion/engine/builtin.ShapeView
+    state:
+      fillColor: "#0000"
+      strokeColor: "#000"
+      strokeWeight: 0
+      cornerRadius: 0
+      pType: 3
+  - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary
+    state: { }
+  - name: ClickAndInspeceet
+    state: { }
+id: 0
+name: Prefab container
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 0
+    "y": 0
+    z: 1
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 100
+    "y": 100
+    z: 0

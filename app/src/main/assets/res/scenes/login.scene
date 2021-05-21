@@ -1,0 +1,52 @@
+children:
+  - children: []
+    id: 1
+    name: yeet-n-grid
+    transform:
+      pivot:
+        x: 0
+        "y": 0
+        z: 0
+      position:
+        x: 0
+        "y": 0
+        z: 0
+      rotation:
+        x: 0
+        "y": 0
+        z: 0
+      size:
+        x: 500
+        "y": 500
+        z: 0
+    components:
+      - name: AmphionLand/components.WidgetGrid
+        state:
+          rows: 5
+          cols: 5
+          rowPadding: 50
+          colPadding: 50
+components:
+  - name: github.com/cadmean-ru/amphion/engine/builtin.BoundaryView
+    state: { }
+  - name: AmphionLand/components.LoginSceneController
+    state: { }
+id: 0
+name: Login
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 0
+    "y": 0
+    z: 0
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 1
+    "y": 1
+    z: 1

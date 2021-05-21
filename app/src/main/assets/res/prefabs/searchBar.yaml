@@ -1,0 +1,194 @@
+children:
+  - children:
+    - children: []
+      id: 1
+      name: search result 1
+      transform:
+        pivot:
+          x: 0
+          "y": 0
+          z: 0
+        position:
+          x: 0
+          "y": 0
+          z: 1
+        rotation:
+          x: 0
+          "y": 0
+          z: 0
+        size:
+          x: 500
+          "y": 30
+          z: 0
+      components:
+        - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+          state:
+            textColor: "#000"
+            font: ""
+            fontSize: 20
+            fontWeight: 0
+            text: ""
+    - children: [ ]
+      id: 2
+      name: search result 2
+      transform:
+        pivot:
+          x: 0
+          "y": 0
+          z: 0
+        position:
+          x: 0
+          "y": 0
+          z: 1
+        rotation:
+          x: 0
+          "y": 0
+          z: 0
+        size:
+          x: 500
+          "y": 30
+          z: 0
+      components:
+        - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+          state:
+            textColor: "#000"
+            font: ""
+            fontSize: 20
+            fontWeight: 0
+            text: ""
+    - children: [ ]
+      id: 3
+      name: search result 3
+      transform:
+        pivot:
+          x: 0
+          "y": 0
+          z: 0
+        position:
+          x: 0
+          "y": 0
+          z: 1
+        rotation:
+          x: 0
+          "y": 0
+          z: 0
+        size:
+          x: 500
+          "y": 30
+          z: 0
+      components:
+        - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+          state:
+            textColor: "#000"
+            font: ""
+            fontSize: 20
+            fontWeight: 0
+            text: ""
+    - children: [ ]
+      id: 4
+      name: search result 4
+      transform:
+        pivot:
+          x: 0
+          "y": 0
+          z: 0
+        position:
+          x: 0
+          "y": 0
+          z: 1
+        rotation:
+          x: 0
+          "y": 0
+          z: 0
+        size:
+          x: 500
+          "y": 30
+          z: 0
+      components:
+        - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+          state:
+            textColor: "#000"
+            font: ""
+            fontSize: 20
+            fontWeight: 0
+            text: ""
+    - children: [ ]
+      id: 5
+      name: search result 5
+      transform:
+        pivot:
+          x: 0
+          "y": 0
+          z: 0
+        position:
+          x: 0
+          "y": 0
+          z: 1
+        rotation:
+          x: 0
+          "y": 0
+          z: 0
+        size:
+          x: 500
+          "y": 30
+          z: 0
+      components:
+        - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+          state:
+            textColor: "#000"
+            font: ""
+            fontSize: 20
+            fontWeight: 0
+            text: ""
+    id: 0
+    name: search results
+    transform:
+      pivot:
+        x: 0
+        "y": 0
+        z: 0
+      position:
+        x: 0
+        "y": 50
+        z: 1
+      rotation:
+        x: 0
+        "y": 0
+        z: 0
+      size:
+        x: 500
+        "y": 500
+        z: 0
+    components:
+      - name: github.com/cadmean-ru/amphion/engine/builtin.GridLayout
+        state:
+          rows: 5
+          cols: 1
+          rowPadding: 0
+          colPadding: 0
+components:
+  - name: github.com/cadmean-ru/amphion/engine/builtin.NativeInputView
+    state: { }
+  - name: AmphionLand/components.SearchAlgorithm
+    state: { }
+  - name: github.com/cadmean-ru/amphion/engine/builtin.BoundaryView
+    state: {}
+id: 0
+name: SearchBar
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 300
+    "y": 10
+    z: 1
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 400
+    "y": 50
+    z: 0

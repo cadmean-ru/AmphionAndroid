@@ -1,38 +1,75 @@
 children:
-- children:
-  id: 1
-  name: main text
-  transform:
-    pivot:
-      x: 0.5
-      "y": 0.5
-      z: 0
-    position:
-      x: -2147483646
-      "y": -2147483646
-      z: 0
-    rotation:
-      x: 0
-      "y": 0
-      z: 0
-    size:
-      x: 150
-      "y": 30
-      z: 0
-  children: []
-  components: 
-    - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
-      state:
-        textColor: "#000"
-        font: ""
-        fontSize: 20
-        fontWeight: 0
-        text: "Hello, Amphion!"
-    - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary
-      state: {}
-components: []
+  - children: []
+    id: 1
+    name: main text
+    transform:
+      pivot:
+        x: 0.5
+        "y": 0.5
+        z: 0
+      position:
+        x: -2147483646
+        "y": -2147483646
+        z: 0
+      rotation:
+        x: 0
+        "y": 0
+        z: 0
+      size:
+        x: 150
+        "y": 30
+        z: 0
+    components:
+      - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+        state:
+          textColor: "#000"
+          font: ""
+          fontSize: 20
+          fontWeight: 0
+          text: "Hello, Amphion!"
+      - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary
+        state: {}
+      - name: AmphionLand/components.Zooming
+        state:
+          ZoomNumber: 5
+          EventOn: -14
+          EventOff: -15
+      - name: github.com/cadmean-ru/amphion/engine/builtin.BoundaryView
+        state: {}
+  - children: [ ]
+    id: 2
+    name: imaage
+    transform:
+      pivot:
+        x: 0
+        "y": 0
+        z: 0
+      position:
+        x: 500
+        "y": 1500
+        z: -10
+      rotation:
+        x: 0
+        "y": 0
+        z: 0
+      size:
+        x: -2147483648
+        "y": 300
+        z: 0
+    components:
+      - name: github.com/cadmean-ru/amphion/engine/builtin.ImageView
+        state:
+          resId: 2
+          imageUrl: ""
+components:
+  - name: AmphionLand/components.NewScrolling
+    state: {}
+  - name: AmphionLand/components.MainSceneController
+    state: {}
+  - name: AmphionLand/components.Selection
+    state: {}
 id: 0
-name: Test scene
+name: Main scene 2
 transform:
   pivot:
     x: 0

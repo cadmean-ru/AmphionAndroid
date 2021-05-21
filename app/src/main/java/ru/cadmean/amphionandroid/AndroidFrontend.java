@@ -80,11 +80,6 @@ public class AndroidFrontend implements FrontendDelegate {
     }
 
     @Override
-    public void reset() {
-
-    }
-
-    @Override
     public void run() {
 
     }

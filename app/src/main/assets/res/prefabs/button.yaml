@@ -1,0 +1,60 @@
+children:
+  - children: []
+    id: 1
+    name: Button text
+    transform:
+      pivot:
+        x: 0
+        "y": 0
+        z: 0
+      position:
+        x: 0
+        "y": 0
+        z: 1
+      rotation:
+        x: 0
+        "y": 0
+        z: 0
+      size:
+        x: $MatchParent
+        "y": $MatchParent
+        z: 0
+    components:
+      - name: github.com/cadmean-ru/amphion/engine/builtin.TextView
+        state:
+          textColor: "#000"
+          font: ""
+          fontSize: 20
+          fontWeight: 0
+          text: "bruh"
+          hTextAlign: $TextAlignCenter
+          vTextAlign: $TextAlignCenter
+components:
+  - name: github.com/cadmean-ru/amphion/engine/builtin.ShapeView
+    state:
+      fillColor: "#666699"
+      strokeColor: "#000"
+      strokeWeight: 1
+      pType: 3
+      cornerRadius: 69
+  - name: github.com/cadmean-ru/amphion/engine/builtin.RectBoundary
+    state: {}
+id: 0
+name: Button
+transform:
+  pivot:
+    x: 0
+    "y": 0
+    z: 0
+  position:
+    x: 100
+    "y": 0
+    z: 2
+  rotation:
+    x: 0
+    "y": 0
+    z: 0
+  size:
+    x: 100
+    "y": 200
+    z: 0

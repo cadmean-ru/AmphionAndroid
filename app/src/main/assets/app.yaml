@@ -3,4 +3,4 @@ author: "cadmean"
 companyDomain: "cadmean.ru"
 frontend: "android"
 debug: true
-mainScene: "second"
+mainScene: "editor"
